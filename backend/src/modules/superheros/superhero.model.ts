@@ -15,22 +15,24 @@ class SuperheroModel extends AbstractModel {
 
   public catchPhrase!: string;
 
+  public images?: ImageModel[];
+
   static get relationMappings(): RelationMappings {
-		return {
-      superheros: {
+    return {
+      images: {
         join: {
           from: `${DBTables.SUPERHEROS}.id`,
           to: `${DBTables.IMAGES}.superheroId`
         },
         modelClass: ImageModel,
-        relation: Model.HasManyRelation,
+        relation: Model.HasManyRelation
       }
-    }
+    };
   }
 
   public static override get tableName(): string {
-		return DBTables.SUPERHEROS;
-	}
+    return DBTables.SUPERHEROS;
+  }
 }
 
 export { SuperheroModel };

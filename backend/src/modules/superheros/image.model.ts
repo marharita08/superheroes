@@ -10,21 +10,21 @@ class ImageModel extends AbstractModel {
   public link!: string;
 
   static get relationMappings(): RelationMappings {
-		return {
+    return {
       superheros: {
         join: {
           from: `${DBTables.IMAGES}.superheroId`,
           to: `${DBTables.SUPERHEROS}.id`
         },
         modelClass: SuperheroModel,
-        relation: Model.BelongsToOneRelation,
+        relation: Model.BelongsToOneRelation
       }
-    }
+    };
   }
 
   public static override get tableName(): string {
-		return DBTables.IMAGES;
-	}
+    return DBTables.IMAGES;
+  }
 }
 
 export { ImageModel };

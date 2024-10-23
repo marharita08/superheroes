@@ -10,20 +10,20 @@ const ColumnName = {
   REAL_NAME: "real_name",
   ORIGIN_DESCRIPTION: "origin_description",
   SUPERPOWERS: "superpowers",
-  CATCH_PHRASE: "catch_phrase",
-}
+  CATCH_PHRASE: "catch_phrase"
+};
 
 export async function up(knex: Knex): Promise<void> {
-  return knex.schema.createTable(TABLE_NAME, (table) => {
+  return knex.schema.createTable(TABLE_NAME, table => {
     table.increments(ColumnName.ID).primary();
     table
-			.dateTime(ColumnName.CREATED_AT)
-			.notNullable()
-			.defaultTo(knex.fn.now());
-		table
-			.dateTime(ColumnName.UPDATED_AT)
-			.notNullable()
-			.defaultTo(knex.fn.now());
+      .dateTime(ColumnName.CREATED_AT)
+      .notNullable()
+      .defaultTo(knex.fn.now());
+    table
+      .dateTime(ColumnName.UPDATED_AT)
+      .notNullable()
+      .defaultTo(knex.fn.now());
     table.string(ColumnName.NICKNAME).notNullable();
     table.string(ColumnName.REAL_NAME).notNullable;
     table.text(ColumnName.ORIGIN_DESCRIPTION).notNullable;
