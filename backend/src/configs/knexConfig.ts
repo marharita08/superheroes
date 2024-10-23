@@ -12,7 +12,8 @@ export default {
       database: Environment.DB.DATABASE,
     },
     migrations: {
-      directory: 'src/db/migrations'
+      directory: 'src/db/migrations',
+      tableName: 'migrations'
     },
     ...knexSnakeCaseMappers({ underscoreBetweenUppercaseLetters: true }),
   }

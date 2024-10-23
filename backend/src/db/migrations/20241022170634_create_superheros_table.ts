@@ -9,6 +9,7 @@ const ColumnName = {
   NICKNAME: "nickname",
   REAL_NAME: "real_name",
   ORIGIN_DESCRIPTION: "origin_description",
+  SUPERPOWERS: "superpowers",
   CATCH_PHRASE: "catch_phrase",
 }
 
@@ -26,6 +27,7 @@ export async function up(knex: Knex): Promise<void> {
     table.string(ColumnName.NICKNAME).notNullable();
     table.string(ColumnName.REAL_NAME).notNullable;
     table.text(ColumnName.ORIGIN_DESCRIPTION).notNullable;
+    table.text(ColumnName.SUPERPOWERS).notNullable;
     table.string(ColumnName.CATCH_PHRASE).notNullable;
   });
 }
