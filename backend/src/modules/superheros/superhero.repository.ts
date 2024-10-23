@@ -123,15 +123,13 @@ class SuperheroRepository {
       images
     } = payload.toNewObject();
 
-    const superhero = await this.superheroModel
-      .query()
-      .updateAndFetchById(id, {
-        nickname,
-        realName,
-        originDescription,
-        superpowers,
-        catchPhrase
-      });
+    const superhero = await this.superheroModel.query().updateAndFetchById(id, {
+      nickname,
+      realName,
+      originDescription,
+      superpowers,
+      catchPhrase
+    });
 
     const oldImages = await this.imageModel.query().where({ superheroId: id });
 
@@ -164,6 +162,8 @@ class SuperheroRepository {
       );
     }
 
+    const savedImages = await this.imageModel.query().where({superheroId: id});
+
     return superhero
       ? SuperheroEntity.initialize({
           id: superhero.id,
@@ -175,9 +175,7 @@ class SuperheroRepository {
           superpowers: superhero.superpowers,
           catchPhrase: superhero.catchPhrase,
           images:
-            superhero.images && superhero.images.length > 0
-              ? superhero.images.map(image => image.link)
-              : null
+            savedImages.length > 0 ? savedImages.map(image => image.link) : null
         })
       : null;
   }

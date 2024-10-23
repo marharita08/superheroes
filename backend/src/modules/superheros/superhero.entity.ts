@@ -96,7 +96,7 @@ class SuperheroEntity {
     originDescription: string;
     superpowers: string;
     catchPhrase: string;
-    images?: string[];
+    images: string[] | null;
   }) {
     return new SuperheroEntity({
       id: null,
@@ -107,7 +107,7 @@ class SuperheroEntity {
       originDescription,
       superpowers,
       catchPhrase,
-      images: images ?? null
+      images: images
     });
   }
 
