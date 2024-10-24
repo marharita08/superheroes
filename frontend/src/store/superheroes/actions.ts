@@ -1,10 +1,11 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { type AsyncThunkConfig } from "../async-thunk-config.type";
-import { SuperheroDto } from "../../types/superhero-dto.type.js";
-import { SuperheroCreateUpdateDto } from "../../types/superhero-create-update-dto.type.js";
-import { SuperheroShortDto } from "../../types/superhero-short-dto.type.js";
 
-import { name as sliceName } from "./superhero.slice.js";
+import { type AsyncThunkConfig } from "../async-thunk-config.type";
+import { SuperheroDto } from "../../types/superhero-dto.type";
+import { SuperheroCreateUpdateDto } from "../../types/superhero-create-update-dto.type";
+import { SuperheroShortDto } from "../../types/superhero-short-dto.type";
+
+import { name as sliceName } from "./superheroes.slice";
 
 const addSuperhero = createAsyncThunk<
   SuperheroDto,

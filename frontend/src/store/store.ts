@@ -1,5 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { reducer as superheroReducer } from "./superheros/superhero.slice";
+
+import { reducer as superheroReducer } from "./superheroes/superheroes";
 import superheroService from "../services/superheros.service";
 
 const store = configureStore({

@@ -1,10 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-import { DataStatus } from "../../enums/data-status.enum.js";
-import { ValueOf } from "../../types/value-of.type.js";
-import { SuperheroDto } from "../../types/superhero-dto.type.js";
-import { SuperheroShortDto } from "../../types/superhero-short-dto.type.js";
-import { parseSuperheroToShort } from "../../helpers/parse-superhero-to-short.js";
+import { DataStatus } from "../../enums/data-status.enum";
+import { ValueOf } from "../../types/value-of.type";
+import { SuperheroDto } from "../../types/superhero-dto.type";
+import { SuperheroShortDto } from "../../types/superhero-short-dto.type";
+import { parseSuperheroToShort } from "../../helpers/parse-superhero-to-short";
 
 import {
   addSuperhero,
@@ -12,7 +12,7 @@ import {
   getSuperheroes,
   getSuperheroById,
   updateSuperhero
-} from "./actions.js";
+} from "./actions";
 
 type State = {
   superheroes: SuperheroShortDto[];
