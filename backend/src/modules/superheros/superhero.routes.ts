@@ -63,7 +63,7 @@ router.delete(
     const id = +req.params.id;
     await superheroService.delete(id);
 
-    res.status(HTTPStatus.NO_CONTENT).send();
+    res.json(id);
   })
 );
 
