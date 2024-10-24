@@ -162,7 +162,9 @@ class SuperheroRepository {
       );
     }
 
-    const savedImages = await this.imageModel.query().where({superheroId: id});
+    const savedImages = await this.imageModel
+      .query()
+      .where({ superheroId: id });
 
     return superhero
       ? SuperheroEntity.initialize({

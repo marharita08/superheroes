@@ -11,15 +11,19 @@ class SuperheroService {
     this.superheroRepository = superheroRepository;
   }
 
-  public async create(payload: SuperheroCreateUpdateDto): Promise<SuperheroDto> {
-    const superhero = await this.superheroRepository.create(SuperheroEntity.initializeNew({
-      nickname: payload.nickname,
-      realName: payload.realName,
-      originDescription: payload.originDescription,
-      superpowers: payload.superpowers,
-      catchPhrase: payload.catchPhrase,
-      images: payload.images,
-    }));
+  public async create(
+    payload: SuperheroCreateUpdateDto
+  ): Promise<SuperheroDto> {
+    const superhero = await this.superheroRepository.create(
+      SuperheroEntity.initializeNew({
+        nickname: payload.nickname,
+        realName: payload.realName,
+        originDescription: payload.originDescription,
+        superpowers: payload.superpowers,
+        catchPhrase: payload.catchPhrase,
+        images: payload.images
+      })
+    );
 
     return superhero.toObject();
   }
@@ -37,22 +41,27 @@ class SuperheroService {
   public async findAll(): Promise<SuperheroShortDto[]> {
     const superheros = await this.superheroRepository.findAll();
 
-    return superheros.map((superhero) => superhero.toShortObject());
+    return superheros.map(superhero => superhero.toShortObject());
   }
 
-  public async update(id: number, payload: SuperheroCreateUpdateDto): Promise<SuperheroDto | null> {
-    const superhero = await this.superheroRepository.update(id, SuperheroEntity.initializeNew({
-      nickname: payload.nickname,
-      realName: payload.realName,
-      originDescription: payload.originDescription,
-      superpowers: payload.superpowers,
-      catchPhrase: payload.catchPhrase,
-      images: payload.images,
-    }));
+  public async update(
+    id: number,
+    payload: SuperheroCreateUpdateDto
+  ): Promise<SuperheroDto | null> {
+    const superhero = await this.superheroRepository.update(
+      id,
+      SuperheroEntity.initializeNew({
+        nickname: payload.nickname,
+        realName: payload.realName,
+        originDescription: payload.originDescription,
+        superpowers: payload.superpowers,
+        catchPhrase: payload.catchPhrase,
+        images: payload.images
+      })
+    );
 
     return superhero?.toObject() ?? null;
   }
-
 }
 
 export { SuperheroService };
