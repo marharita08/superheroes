@@ -8,8 +8,8 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/superheroes" element={<Superheroes />}/>
-        <Route path="/superheroes/:id" element={<Superhero />}/>
+        <Route path="/superheroes" element={<Superheroes />} />
+        <Route path="/superheroes/:id" element={<Superhero />} />
         <Route path="/superheroes/create" element={<CreateSuperhero />} />
       </Routes>
     </BrowserRouter>

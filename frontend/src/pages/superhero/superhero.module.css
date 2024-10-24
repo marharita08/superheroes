@@ -17,8 +17,8 @@
 
 .info {
   display: grid;
-  grid-template-columns: 1fr 5fr; 
-  gap: 10px; 
+  grid-template-columns: 1fr 5fr;
+  gap: 10px;
 }
 
 .info_title {

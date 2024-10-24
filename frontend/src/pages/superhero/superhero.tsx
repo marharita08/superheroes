@@ -8,7 +8,6 @@ import { DataStatus } from "../../enums/data-status.enum";
 import styles from "./superhero.module.css";
 
 const Superhero: React.FC = () => {
-
   const { id } = useParams();
 
   const dispatch: AppDispatch = useDispatch();
@@ -27,53 +26,35 @@ const Superhero: React.FC = () => {
 
   return (
     <div className={styles.container}>
-      {
-        isLoading && "Loading..."
-      }
-      {
-        superhero &&
+      {isLoading && "Loading..."}
+      {superhero && (
         <>
           <div className={styles.images}>
-            {
-              superhero.images?.map((image) => <img src={image} alt={superhero.nickname} className={styles.image} key={image} />)
-            }
+            {superhero.images?.map(image => (
+              <img
+                src={image}
+                alt={superhero.nickname}
+                className={styles.image}
+                key={image}
+              />
+            ))}
           </div>
           <div className={styles.info}>
-            <div className={styles.info_title}>
-              Nickname:
-            </div>
-            <div>
-              {superhero.nickname}
-            </div>
-            <div className={styles.info_title}>
-              Real Name:
-            </div>
-            <div>
-              {superhero.realName}
-            </div>
-            <div className={styles.info_title}>
-              Origin Description:
-            </div>
-            <div>
-              {superhero.originDescription}
-            </div>
-            <div className={styles.info_title}>
-              Catch Phrase:
-            </div>
-            <div>
-              {superhero.catchPhrase}
-            </div>
-            <div className={styles.info_title}>
-              Superpowers:
-            </div>
-            <div>
-              {superhero.superpowers}
-            </div>
+            <div className={styles.info_title}>Nickname:</div>
+            <div>{superhero.nickname}</div>
+            <div className={styles.info_title}>Real Name:</div>
+            <div>{superhero.realName}</div>
+            <div className={styles.info_title}>Origin Description:</div>
+            <div>{superhero.originDescription}</div>
+            <div className={styles.info_title}>Catch Phrase:</div>
+            <div>{superhero.catchPhrase}</div>
+            <div className={styles.info_title}>Superpowers:</div>
+            <div>{superhero.superpowers}</div>
           </div>
         </>
-      }
+      )}
     </div>
-  )
-}
+  );
+};
 
 export { Superhero };

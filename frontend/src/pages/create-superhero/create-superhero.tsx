@@ -1,19 +1,20 @@
 import React, { useCallback } from "react";
-import { SuperheroForm } from "../../components/superhero-form/superhero-form";
-import { SuperheroCreateUpdateSchema } from "../../validation-schemas/superhero.validation-schema"; 
 import { z } from "zod";
+
+import { SuperheroForm } from "../../components/superhero-form/superhero-form";
+import { SuperheroCreateUpdateSchema } from "../../validation-schemas/superhero.validation-schema";
+import styles from "./create-superhero.module.css";
 
 type SuperheroCreateUpdateDto = z.infer<typeof SuperheroCreateUpdateSchema>;
 
 const CreateSuperhero: React.FC = () => {
-
   const defaultValues: SuperheroCreateUpdateDto = {
     nickname: "",
     realName: "",
     originDescription: "",
     superpowers: "",
     catchPhrase: "",
-    images: [{url: ""}]
+    images: [{ url: "" }]
   };
 
   const handleFormSubmit = useCallback((data: SuperheroCreateUpdateDto) => {
@@ -21,9 +22,14 @@ const CreateSuperhero: React.FC = () => {
   }, []);
 
   return (
-    <div>
-      <h1>Create Superhero</h1>
-      <SuperheroForm defaultValues={defaultValues} onSubmit={handleFormSubmit} />
+    <div className={styles.container}>
+      <div className={styles.card}>
+        <h1>Create Superhero</h1>
+        <SuperheroForm
+          defaultValues={defaultValues}
+          onSubmit={handleFormSubmit}
+        />
+      </div>
     </div>
   );
 };

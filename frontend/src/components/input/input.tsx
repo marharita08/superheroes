@@ -1,4 +1,11 @@
-import { useController, FieldErrors, FieldValues, Control, FieldPath } from "react-hook-form";
+import {
+  useController,
+  FieldErrors,
+  FieldValues,
+  Control,
+  FieldPath
+} from "react-hook-form";
+import styles from "./input.module.css";
 
 type Properties<T extends FieldValues> = {
   label: string;
@@ -10,22 +17,32 @@ type Properties<T extends FieldValues> = {
   name: FieldPath<T>;
 };
 
-const Input = <T extends FieldValues>({ label, errors, rows, placeholder, type = "text", name, control } : Properties<T>): JSX.Element => {
-
+const Input = <T extends FieldValues>({
+  label,
+  errors,
+  rows,
+  placeholder,
+  type = "text",
+  name,
+  control
+}: Properties<T>): JSX.Element => {
   const { field } = useController({ control, name });
 
-	const error = errors?.[name]?.message;
-	const hasError = Boolean(error);
+  const error = errors?.[name]?.message;
+  const hasError = Boolean(error);
 
   return (
-    <div>
-      <label htmlFor={name}>{label}</label>
+    <div className={styles.container}>
+      <label htmlFor={name} className={styles.label}>
+        {label}
+      </label>
       {rows && rows > 1 ? (
         <textarea
           id={name}
           rows={rows}
           placeholder={placeholder}
           {...field}
+          className={styles.input}
         />
       ) : (
         <input
@@ -33,9 +50,10 @@ const Input = <T extends FieldValues>({ label, errors, rows, placeholder, type =
           type={type}
           placeholder={placeholder}
           {...field}
+          className={styles.input}
         />
       )}
-      {hasError && <p style={{ color: "red" }}>{error as string}</p>}
+      {hasError && <span className={styles.error}>{error as string}</span>}
     </div>
   );
 };

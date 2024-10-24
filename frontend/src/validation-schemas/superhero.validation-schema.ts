@@ -12,7 +12,9 @@ const SuperheroCreateUpdateSchema = z.object({
     .trim()
     .min(1, { message: "Superpowers are required" }),
   catchPhrase: z.string().trim().min(1, { message: "Catchphrase is required" }),
-  images: z.array(z.object({ url: z.string().url("Must be a valid URL") })).optional()
+  images: z
+    .array(z.object({ url: z.string().url("Must be a valid URL") }))
+    .optional()
 });
 
 export { SuperheroCreateUpdateSchema };

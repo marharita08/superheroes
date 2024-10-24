@@ -25,9 +25,10 @@ const Superheroes: React.FC = () => {
       <h2>Superheroes</h2>
       {isLoading
         ? "Loading..."
-        : superheroes.map((superhero) => <Superhero superhero={superhero} key={superhero.id} />)}
+        : superheroes.map(superhero => (
+            <Superhero superhero={superhero} key={superhero.id} />
+          ))}
     </div>
-
   );
 };
 
