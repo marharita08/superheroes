@@ -16,23 +16,25 @@ const addSuperhero = createAsyncThunk<
   return await superheroService.create(payload);
 });
 
-const getSuperheroes = createAsyncThunk<SuperheroShortDto[], undefined, AsyncThunkConfig>(
-  `${sliceName}/get-superheroes`,
-  async (_, { extra }) => {
-    const { superheroService } = extra;
+const getSuperheroes = createAsyncThunk<
+  SuperheroShortDto[],
+  undefined,
+  AsyncThunkConfig
+>(`${sliceName}/get-superheroes`, async (_, { extra }) => {
+  const { superheroService } = extra;
 
-    return await superheroService.getAll();
-  }
-);
+  return await superheroService.getAll();
+});
 
-const getSuperheroById = createAsyncThunk<SuperheroDto, number, AsyncThunkConfig>(
-  `${sliceName}/get-superhero-by-id`,
-  async (id, { extra }) => {
-    const { superheroService } = extra;
+const getSuperheroById = createAsyncThunk<
+  SuperheroDto,
+  number,
+  AsyncThunkConfig
+>(`${sliceName}/get-superhero-by-id`, async (id, { extra }) => {
+  const { superheroService } = extra;
 
-    return await superheroService.get(id);
-  }
-);
+  return await superheroService.get(id);
+});
 
 const updateSuperhero = createAsyncThunk<
   SuperheroDto,
@@ -59,5 +61,5 @@ export {
   getSuperheroes,
   getSuperheroById,
   updateSuperhero,
-  deleteSuperhero,
+  deleteSuperhero
 };

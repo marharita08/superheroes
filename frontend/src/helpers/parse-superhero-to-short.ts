@@ -7,8 +7,11 @@ const parseSuperheroToShort = (superhero: SuperheroDto): SuperheroShortDto => {
     createdAt: superhero.createdAt,
     updatedAt: superhero.updatedAt,
     nickname: superhero.nickname,
-    image: superhero.images && superhero.images.length > 0 ? superhero.images[0] : null
-  }
-}
+    image:
+      superhero.images && superhero.images.length > 0
+        ? superhero.images[0]
+        : null
+  };
+};
 
 export { parseSuperheroToShort };

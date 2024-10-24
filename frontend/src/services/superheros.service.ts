@@ -18,9 +18,7 @@ class SuperheroService {
     return this.httpService.get<SuperheroDto>(`/superheros/${id}`);
   }
 
-  async create(
-    superheroData: SuperheroCreateUpdateDto
-  ): Promise<SuperheroDto> {
+  async create(superheroData: SuperheroCreateUpdateDto): Promise<SuperheroDto> {
     return this.httpService.post<SuperheroDto, SuperheroCreateUpdateDto>(
       "/superheros",
       superheroData
@@ -42,7 +40,9 @@ class SuperheroService {
   }
 }
 
-const superheroService = new SuperheroService(process.env.REACT_APP_API_URL as string);
+const superheroService = new SuperheroService(
+  process.env.REACT_APP_API_URL as string
+);
 
 export default superheroService;
 export { SuperheroService };

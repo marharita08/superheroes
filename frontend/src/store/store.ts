@@ -1,19 +1,19 @@
-import { configureStore } from '@reduxjs/toolkit';
-import { reducer as superheroReducer } from "./superheros/superhero.slice"; 
-import superheroService from '../services/superheros.service';
+import { configureStore } from "@reduxjs/toolkit";
+import { reducer as superheroReducer } from "./superheros/superhero.slice";
+import superheroService from "../services/superheros.service";
 
 const store = configureStore({
   reducer: {
-    superheroes: superheroReducer,
+    superheroes: superheroReducer
   },
-  middleware: (getDefaultMiddleware) =>
+  middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
       thunk: {
         extraArgument: {
-          superheroService,
-        },
-      },
-    }),
+          superheroService
+        }
+      }
+    })
 });
 
 export type RootState = ReturnType<typeof store.getState>;
