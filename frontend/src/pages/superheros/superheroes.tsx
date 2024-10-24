@@ -21,7 +21,7 @@ const Superheroes: React.FC = () => {
   const isLoading = dataStatus === DataStatus.PENDING;
 
   return (
-    <div className={styles.superheroes_container}>
+    <div className={styles.container}>
       <h2>Superheroes</h2>
       {isLoading
         ? "Loading..."

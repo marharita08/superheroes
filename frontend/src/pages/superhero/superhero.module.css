@@ -1,0 +1,26 @@
+.container {
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.images {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.image {
+  width: 200px;
+}
+
+.info {
+  display: grid;
+  grid-template-columns: 1fr 5fr; 
+  gap: 10px; 
+}
+
+.info_title {
+  font-weight: bold;
+}

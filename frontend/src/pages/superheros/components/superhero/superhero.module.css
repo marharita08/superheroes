@@ -1,11 +1,11 @@
-.superhero_container {
+.container {
   display: flex;
   flex-direction: row;
   align-items: center;
   gap: 10px;
 }
 
-.superhero_image {
+.image {
   width: 100px;
 }
 
