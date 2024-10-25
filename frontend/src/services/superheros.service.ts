@@ -10,12 +10,18 @@ class SuperheroService {
     this.httpService = new HttpService(baseURL);
   }
 
-  async getAll(): Promise<SuperheroShortDto[]> {
-    return this.httpService.get<SuperheroShortDto[]>("/superheroes");
+  async getAll(page: number, pageSize: number): Promise<SuperheroShortDto[]> {
+    return this.httpService.get<SuperheroShortDto[]>(
+      `/superheroes?page=${page}&pageSize=${pageSize}`
+    );
   }
 
   async get(id: number): Promise<SuperheroDto> {
     return this.httpService.get<SuperheroDto>(`/superheroes/${id}`);
+  }
+
+  async count(): Promise<number> {
+    return (await this.httpService.get<{count: number}>("/superheroes/count")).count;
   }
 
   async create(superheroData: SuperheroCreateUpdateDto): Promise<SuperheroDto> {

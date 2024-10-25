@@ -19,12 +19,23 @@ const addSuperhero = createAsyncThunk<
 
 const getSuperheroes = createAsyncThunk<
   SuperheroShortDto[],
+  { page: number; pageSize: number },
+  AsyncThunkConfig
+>(`${sliceName}/get-superheroes`, async (payload, { extra }) => {
+  const { superheroService } = extra;
+  const { page, pageSize } = payload;
+
+  return await superheroService.getAll(page, pageSize);
+});
+
+const getSuperheroesCount = createAsyncThunk<
+  number,
   undefined,
   AsyncThunkConfig
->(`${sliceName}/get-superheroes`, async (_, { extra }) => {
+>(`${sliceName}/get-superheroes-count`, async (_, { extra }) => {
   const { superheroService } = extra;
 
-  return await superheroService.getAll();
+  return await superheroService.count();
 });
 
 const getSuperheroById = createAsyncThunk<
@@ -62,5 +73,6 @@ export {
   getSuperheroes,
   getSuperheroById,
   updateSuperhero,
-  deleteSuperhero
+  deleteSuperhero,
+  getSuperheroesCount
 };

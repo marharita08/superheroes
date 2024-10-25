@@ -36,6 +36,7 @@ const Superhero: React.FC = () => {
 
   return (
     <div className={styles.container}>
+      <div className={styles.card}>
       {isLoading && "Loading..."}
       {superhero && (
         <>
@@ -61,12 +62,13 @@ const Superhero: React.FC = () => {
             <div className={styles.info_title}>Superpowers:</div>
             <div>{superhero.superpowers}</div>
           </div>
-          <div>
+          <div className={styles.buttons}>
             <Button label="Back to List" onClick={handleBackToList} />
             <Button label="Edit" onClick={handleEdit} />
           </div>
         </>
       )}
+      </div>
     </div>
   );
 };

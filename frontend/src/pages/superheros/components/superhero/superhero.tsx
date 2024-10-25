@@ -31,7 +31,7 @@ const Superhero: React.FC<Properties> = ({ superhero }) => {
           <h3>{superhero.nickname}</h3>
         </Link>
       </div>
-      <div>
+      <div className={styles.button}>
         <Button label="Delete" onClick={handleDelete} />
       </div>
     </div>

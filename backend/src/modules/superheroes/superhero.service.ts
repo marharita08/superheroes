@@ -38,8 +38,11 @@ class SuperheroService {
     return superhero?.toObject() ?? null;
   }
 
-  public async findAll(): Promise<SuperheroShortDto[]> {
-    const superheros = await this.superheroRepository.findAll();
+  public async findAll(
+    page: number,
+    pageSize: number
+  ): Promise<SuperheroShortDto[]> {
+    const superheros = await this.superheroRepository.findAll(page, pageSize);
 
     return superheros.map(superhero => superhero.toShortObject());
   }
@@ -61,6 +64,10 @@ class SuperheroService {
     );
 
     return superhero?.toObject() ?? null;
+  }
+
+  public async count(): Promise<number> {
+    return this.superheroRepository.count();
   }
 }
 

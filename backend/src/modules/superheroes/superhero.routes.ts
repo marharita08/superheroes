@@ -15,6 +15,11 @@ const superheroService = new SuperheroService(superheroRepository);
 
 const router = Router();
 
+router.get("/count", asyncHandler(async (req: Request, res: Response) => {
+  const count = await superheroService.count();
+  res.json({count});
+}))
+
 router.get(
   "/:id",
   asyncHandler(async (req: Request, res: Response) => {
@@ -28,10 +33,14 @@ router.get(
 router.get(
   "/",
   asyncHandler(async (req: Request, res: Response) => {
-    const superheros = await superheroService.findAll();
+    const page = parseInt(req.query.page as string, 10) || 1;
+    const pageSize = parseInt(req.query.pageSize as string, 10) || 10;
+    const superheros = await superheroService.findAll(page, pageSize);
+
     res.json(superheros);
   })
 );
+
 
 router.post(
   "/",
@@ -40,6 +49,7 @@ router.post(
       req.body
     );
     const newSuperhero = await superheroService.create(payload);
+
     res.status(HTTPStatus.CREATED).json(newSuperhero);
   })
 );

@@ -3,7 +3,8 @@ import {
   updateSuperhero,
   deleteSuperhero,
   getSuperheroById,
-  getSuperheroes
+  getSuperheroes,
+  getSuperheroesCount
 } from "./actions";
 import { actions } from "./superheroes.slice";
 
@@ -13,6 +14,7 @@ const allActions = {
   deleteSuperhero,
   getSuperheroById,
   getSuperheroes,
+  getSuperheroesCount,
   ...actions
 };
 

@@ -86,11 +86,18 @@ class SuperheroRepository {
       : null;
   }
 
-  public async findAll(): Promise<SuperheroEntity[]> {
+  public async findAll(
+    page: number,
+    pageSize: number
+  ): Promise<SuperheroEntity[]> {
+    const offset = (page - 1) * pageSize;
+
     const superheros = await this.superheroModel
       .query()
       .withGraphFetched("images")
-      .orderBy("id");
+      .orderBy("id")
+      .limit(pageSize)
+      .offset(offset);
 
     return superheros.map(superhero =>
       SuperheroEntity.initialize({
@@ -179,6 +186,10 @@ class SuperheroRepository {
           images: savedImages.length > 0 ? savedImages : null
         })
       : null;
+  }
+
+  public async count(): Promise<number> {
+    return await this.superheroModel.query().resultSize();
   }
 }
 

@@ -11,12 +11,14 @@ import {
   deleteSuperhero,
   getSuperheroes,
   getSuperheroById,
-  updateSuperhero
+  updateSuperhero,
+  getSuperheroesCount,
 } from "./actions";
 
 type State = {
   superheroes: SuperheroShortDto[];
   currentSuperhero: SuperheroDto | null;
+  totalCount: number;
   dataStatus: ValueOf<typeof DataStatus>;
   createUpdateStatus: ValueOf<typeof DataStatus>;
 };
@@ -24,6 +26,7 @@ type State = {
 const initialState: State = {
   superheroes: [],
   currentSuperhero: null,
+  totalCount: 0,
   dataStatus: DataStatus.IDLE,
   createUpdateStatus: DataStatus.IDLE
 };
@@ -102,6 +105,17 @@ const { actions, name, reducer } = createSlice({
       }
     });
     builder.addCase(deleteSuperhero.rejected, state => {
+      state.dataStatus = DataStatus.REJECTED;
+    });
+
+    builder.addCase(getSuperheroesCount.pending, state => {
+      state.dataStatus = DataStatus.PENDING;
+    });
+    builder.addCase(getSuperheroesCount.fulfilled, (state, action) => {
+      state.dataStatus = DataStatus.FULFILLED;
+      state.totalCount = action.payload;
+    });
+    builder.addCase(getSuperheroesCount.rejected, state => {
       state.dataStatus = DataStatus.REJECTED;
     });
   }
