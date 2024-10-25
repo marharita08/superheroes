@@ -21,15 +21,20 @@ const CreateSuperhero: React.FC = () => {
     images: []
   };
 
-  const { superhero, dataStatus, addStatus } = useSelector((state: RootState) => ({
-    superhero: state.superheroes.currentSuperhero,
-    dataStatus: state.superheroes.dataStatus,
-    addStatus: state.superheroes.createUpdateStatus
-  }));
+  const { superhero, dataStatus, addStatus } = useSelector(
+    (state: RootState) => ({
+      superhero: state.superheroes.currentSuperhero,
+      dataStatus: state.superheroes.dataStatus,
+      addStatus: state.superheroes.createUpdateStatus
+    })
+  );
 
-  const handleFormSubmit = useCallback((data: SuperheroCreateUpdateDto): void => {
-    dispatch(superheroesActions.addSuperhero(data));
-  }, [dispatch]);
+  const handleFormSubmit = useCallback(
+    (data: SuperheroCreateUpdateDto): void => {
+      dispatch(superheroesActions.addSuperhero(data));
+    },
+    [dispatch]
+  );
 
   useEffect(() => {
     if (superhero && addStatus === DataStatus.FULFILLED) {

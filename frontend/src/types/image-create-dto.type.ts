@@ -1,5 +1,5 @@
 type ImageCreateDto = {
-  link: string,
-}
+  link: string;
+};
 
 export { type ImageCreateDto };

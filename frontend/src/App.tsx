@@ -12,7 +12,7 @@ function App() {
         <Route path="/superheroes" element={<Superheroes />} />
         <Route path="/superheroes/:id" element={<Superhero />} />
         <Route path="/superheroes/create" element={<CreateSuperhero />} />
-        <Route path="/superheroes/edit/:id" element={<EditSuperhero />}/>
+        <Route path="/superheroes/edit/:id" element={<EditSuperhero />} />
       </Routes>
     </BrowserRouter>
   );

@@ -1,14 +1,16 @@
-import { useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useCallback, useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 import { AppDispatch, RootState } from "../../store/store";
 import { actions as superheroesActions } from "../../store/superheroes/superheroes";
 import { DataStatus } from "../../enums/data-status.enum";
 import styles from "./superhero.module.css";
+import { Button } from "../../components/button/button";
 
 const Superhero: React.FC = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
 
   const dispatch: AppDispatch = useDispatch();
   const { superhero, dataStatus } = useSelector((state: RootState) => ({
@@ -21,6 +23,14 @@ const Superhero: React.FC = () => {
       dispatch(superheroesActions.getSuperheroById(+id));
     }
   }, [dispatch, id]);
+
+  const handleEdit = useCallback(() => {
+    navigate(`/superheroes/edit/${id}`);
+  }, [navigate, id]);
+
+  const handleBackToList = useCallback(() => {
+    navigate("/superheroes");
+  }, [navigate]);
 
   const isLoading = dataStatus === DataStatus.PENDING;
 
@@ -50,6 +60,10 @@ const Superhero: React.FC = () => {
             <div>{superhero.catchPhrase}</div>
             <div className={styles.info_title}>Superpowers:</div>
             <div>{superhero.superpowers}</div>
+          </div>
+          <div>
+            <Button label="Back to List" onClick={handleBackToList} />
+            <Button label="Edit" onClick={handleEdit} />
           </div>
         </>
       )}

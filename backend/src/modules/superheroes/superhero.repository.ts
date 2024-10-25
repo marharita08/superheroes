@@ -52,8 +52,7 @@ class SuperheroRepository {
       originDescription: superhero.originDescription,
       superpowers: superhero.superpowers,
       catchPhrase: superhero.catchPhrase,
-      images:
-        savedImages.length > 0 ? savedImages : null
+      images: savedImages.length > 0 ? savedImages : null
     });
   }
 
@@ -90,7 +89,8 @@ class SuperheroRepository {
   public async findAll(): Promise<SuperheroEntity[]> {
     const superheros = await this.superheroModel
       .query()
-      .withGraphFetched("images");
+      .withGraphFetched("images")
+      .orderBy("id");
 
     return superheros.map(superhero =>
       SuperheroEntity.initialize({

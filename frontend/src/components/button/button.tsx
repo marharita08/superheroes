@@ -2,11 +2,11 @@ import styles from "./button.module.css";
 
 type Properties = {
   label: string;
-  type: "submit" | "button";
+  type?: "submit" | "button";
   onClick?: () => void;
 };
 
-const Button: React.FC<Properties> = ({ label, type, onClick }) => {
+const Button: React.FC<Properties> = ({ label, type = "button", onClick }) => {
   return (
     <button type={type} onClick={onClick} className={styles.button}>
       {label}

@@ -172,7 +172,10 @@ class SuperheroEntity {
       createdAt: this.createdAt,
       updatedAt: this.updatedAt,
       nickname: this.nickname,
-      image: this.images && this.images.length > 0 ? this.images[0] as ImageDto : null
+      image:
+        this.images && this.images.length > 0
+          ? (this.images[0] as ImageDto)
+          : null
     };
   }
 }

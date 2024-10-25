@@ -25,7 +25,7 @@ const initialState: State = {
   superheroes: [],
   currentSuperhero: null,
   dataStatus: DataStatus.IDLE,
-  createUpdateStatus: DataStatus.IDLE,
+  createUpdateStatus: DataStatus.IDLE
 };
 
 const { actions, name, reducer } = createSlice({

@@ -30,13 +30,17 @@ const Superheroes: React.FC = () => {
   return (
     <div className={styles.container}>
       <h2>Superheroes</h2>
-      {isLoading
-        ? "Loading..."
-        : superheroes.map(superhero => (
-            <Superhero superhero={superhero} key={superhero.id} />
-          ))}
+      {isLoading && "Loading..."}
+      {superheroes &&
+        superheroes.map(superhero => (
+          <Superhero superhero={superhero} key={superhero.id} />
+        ))}
       <div>
-        <Button label="Add Superhero" onClick={handleAddSuperhero} type="button"/>
+        <Button
+          label="Add Superhero"
+          onClick={handleAddSuperhero}
+          type="button"
+        />
       </div>
     </div>
   );

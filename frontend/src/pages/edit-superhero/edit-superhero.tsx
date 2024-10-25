@@ -14,17 +14,22 @@ const EditSuperhero: React.FC = () => {
   const dispatch: AppDispatch = useDispatch();
   const navigate = useNavigate();
 
-  const { superhero, dataStatus, updateStatus } = useSelector((state: RootState) => ({
-    superhero: state.superheroes.currentSuperhero,
-    dataStatus: state.superheroes.dataStatus,
-    updateStatus: state.superheroes.createUpdateStatus
-  }));
+  const { superhero, dataStatus, updateStatus } = useSelector(
+    (state: RootState) => ({
+      superhero: state.superheroes.currentSuperhero,
+      dataStatus: state.superheroes.dataStatus,
+      updateStatus: state.superheroes.createUpdateStatus
+    })
+  );
 
-  const handleFormSubmit = useCallback((data: SuperheroCreateUpdateDto): void => {
-    if (id) {
-      dispatch(superheroesActions.updateSuperhero({ id: +id, data }));
-    }
-  }, [dispatch, id]);
+  const handleFormSubmit = useCallback(
+    (data: SuperheroCreateUpdateDto): void => {
+      if (id) {
+        dispatch(superheroesActions.updateSuperhero({ id: +id, data }));
+      }
+    },
+    [dispatch, id]
+  );
 
   useEffect(() => {
     if (id) {
@@ -45,13 +50,12 @@ const EditSuperhero: React.FC = () => {
       <div className={styles.card}>
         <h1>Edit Superhero</h1>
         {isLoading && "Loading..."}
-        {
-          superhero &&
+        {superhero && (
           <SuperheroForm
             defaultValues={superhero}
             onSubmit={handleFormSubmit}
           />
-        }
+        )}
       </div>
     </div>
   );
