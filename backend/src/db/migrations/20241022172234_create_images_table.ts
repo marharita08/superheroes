@@ -2,7 +2,7 @@ import type { Knex } from "knex";
 
 const TableName = {
   IMAGES: "images",
-  SUPERHEROS: "superheros"
+  SUPERHEROES: "superheroes"
 };
 
 const ColumnName = {
@@ -30,7 +30,7 @@ export async function up(knex: Knex): Promise<void> {
       .integer(ColumnName.SUPERHERO_ID)
       .notNullable()
       .references(ColumnName.ID)
-      .inTable(TableName.SUPERHEROS)
+      .inTable(TableName.SUPERHEROES)
       .onDelete(DELETE_STRATEGY);
     table.string(ColumnName.LINK).notNullable;
   });

@@ -2,7 +2,7 @@ import express, { Request, Response } from "express";
 import cors from "cors";
 
 import { Environment } from "./configs/environment";
-import { router as superheroRouter } from "./modules/superheros/superhero.routes";
+import { router as superheroRouter } from "./modules/superheroes/superhero.routes";
 import { errorHandler } from "./middlewares/error-handler.middleware";
 import "./db/db";
 
@@ -12,7 +12,7 @@ const port = Environment.PORT;
 app.use(cors());
 app.use(express.json());
 
-app.use("/superheros", superheroRouter);
+app.use("/superheroes", superheroRouter);
 
 app.get("/", (req: Request, res: Response) => {
   res.send("Hello, TypeScript with Express!");

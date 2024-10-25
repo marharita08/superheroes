@@ -1,3 +1,5 @@
+import { ImageDto } from "./image-dto.type";
+
 type SuperheroDto = {
   id: number;
   createdAt: string;
@@ -7,7 +9,7 @@ type SuperheroDto = {
   originDescription: string;
   superpowers: string;
   catchPhrase: string;
-  images: string[] | null;
+  images: ImageDto[] | null;
 };
 
 export { type SuperheroDto };

@@ -9,7 +9,7 @@ const Superhero: React.FC<Properties> = ({ superhero }) => {
   return (
     <div className={styles.container}>
       <img
-        src={superhero.image ?? undefined}
+        src={superhero.image?.link}
         alt={superhero.nickname}
         className={styles.image}
       />

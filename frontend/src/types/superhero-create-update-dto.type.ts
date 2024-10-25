@@ -1,10 +1,12 @@
+import { ImageCreateDto } from "./image-create-dto.type";
+
 type SuperheroCreateUpdateDto = {
   nickname: string;
   realName: string;
   originDescription: string;
   superpowers: string;
   catchPhrase: string;
-  images: string[] | null;
+  images: ImageCreateDto[] | null;
 };
 
 export { type SuperheroCreateUpdateDto };

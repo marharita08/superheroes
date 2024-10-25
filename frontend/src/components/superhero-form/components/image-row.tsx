@@ -25,7 +25,7 @@ const ImageRow: React.FC<Properties> = ({ index, control, errors, remove }) => {
           placeholder="Enter image URL"
           errors={errors}
           control={control}
-          name={`images.${index}.url`}
+          name={`images.${index}.link`}
         />
       </div>
       <div>

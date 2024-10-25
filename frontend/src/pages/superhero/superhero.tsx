@@ -32,10 +32,10 @@ const Superhero: React.FC = () => {
           <div className={styles.images}>
             {superhero.images?.map(image => (
               <img
-                src={image}
+                src={image.link}
                 alt={superhero.nickname}
                 className={styles.image}
-                key={image}
+                key={image.id}
               />
             ))}
           </div>

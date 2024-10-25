@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import { useCallback } from "react";
 import { useForm, useFieldArray, SubmitHandler } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -42,7 +42,7 @@ const SuperheroForm: React.FC<Props> = ({ defaultValues, onSubmit }) => {
   );
 
   const handleAddImage = useCallback(() => {
-    append({ url: "" });
+    append({ link: "" });
   }, [append]);
 
   return (
@@ -65,7 +65,7 @@ const SuperheroForm: React.FC<Props> = ({ defaultValues, onSubmit }) => {
 
       <Input
         label="Origin Description"
-        rows={2}
+        rows={4}
         placeholder="Enter origin description"
         errors={errors}
         control={control}

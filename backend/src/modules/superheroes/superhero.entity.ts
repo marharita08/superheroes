@@ -1,3 +1,6 @@
+import { ImageCreateDto } from "../../types/image-create-dto.type";
+import { ImageDto } from "../../types/image-dto.type";
+
 class SuperheroEntity {
   private id: null | number;
 
@@ -15,7 +18,7 @@ class SuperheroEntity {
 
   private catchPhrase: string;
 
-  private images: string[] | null;
+  private images: ImageDto[] | ImageCreateDto[] | null;
 
   private constructor({
     id,
@@ -36,7 +39,7 @@ class SuperheroEntity {
     originDescription: string;
     superpowers: string;
     catchPhrase: string;
-    images: string[] | null;
+    images: ImageDto[] | ImageCreateDto[] | null;
   }) {
     this.id = id;
     this.createdAt = createdAt;
@@ -68,7 +71,7 @@ class SuperheroEntity {
     originDescription: string;
     superpowers: string;
     catchPhrase: string;
-    images: string[] | null;
+    images: ImageDto[] | null;
   }) {
     return new SuperheroEntity({
       id,
@@ -96,7 +99,7 @@ class SuperheroEntity {
     originDescription: string;
     superpowers: string;
     catchPhrase: string;
-    images: string[] | null;
+    images: ImageCreateDto[] | null;
   }) {
     return new SuperheroEntity({
       id: null,
@@ -119,7 +122,7 @@ class SuperheroEntity {
     originDescription: string;
     superpowers: string;
     catchPhrase: string;
-    images: string[] | null;
+    images: ImageCreateDto[] | null;
   } {
     return {
       createdAt: this.createdAt,
@@ -142,7 +145,7 @@ class SuperheroEntity {
     originDescription: string;
     superpowers: string;
     catchPhrase: string;
-    images: string[] | null;
+    images: ImageDto[] | null;
   } {
     return {
       id: this.id as number,
@@ -153,7 +156,7 @@ class SuperheroEntity {
       originDescription: this.originDescription,
       superpowers: this.superpowers,
       catchPhrase: this.catchPhrase,
-      images: this.images
+      images: this.images as ImageDto[]
     };
   }
 
@@ -162,14 +165,14 @@ class SuperheroEntity {
     createdAt: string;
     updatedAt: string;
     nickname: string;
-    image: string | null;
+    image: ImageDto | null;
   } {
     return {
       id: this.id as number,
       createdAt: this.createdAt,
       updatedAt: this.updatedAt,
       nickname: this.nickname,
-      image: this.images && this.images.length > 0 ? this.images[0] : null
+      image: this.images && this.images.length > 0 ? this.images[0] as ImageDto : null
     };
   }
 }

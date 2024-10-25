@@ -11,16 +11,16 @@ class SuperheroService {
   }
 
   async getAll(): Promise<SuperheroShortDto[]> {
-    return this.httpService.get<SuperheroShortDto[]>("/superheros");
+    return this.httpService.get<SuperheroShortDto[]>("/superheroes");
   }
 
   async get(id: number): Promise<SuperheroDto> {
-    return this.httpService.get<SuperheroDto>(`/superheros/${id}`);
+    return this.httpService.get<SuperheroDto>(`/superheroes/${id}`);
   }
 
   async create(superheroData: SuperheroCreateUpdateDto): Promise<SuperheroDto> {
     return this.httpService.post<SuperheroDto, SuperheroCreateUpdateDto>(
-      "/superheros",
+      "/superheroes",
       superheroData
     );
   }
@@ -30,13 +30,13 @@ class SuperheroService {
     superheroData: SuperheroCreateUpdateDto
   ): Promise<SuperheroDto> {
     return this.httpService.put<SuperheroDto, SuperheroCreateUpdateDto>(
-      `/superheros/${id}`,
+      `/superheroes/${id}`,
       superheroData
     );
   }
 
   async delete(id: number): Promise<number> {
-    return this.httpService.delete<number>(`/superheros/${id}`);
+    return this.httpService.delete<number>(`/superheroes/${id}`);
   }
 }
 

@@ -1,9 +1,11 @@
+import { ImageDto } from "./image-dto.type";
+
 type SuperheroShortDto = {
   id: number;
   createdAt: string;
   updatedAt: string;
   nickname: string;
-  image: string | null;
+  image: ImageDto | null;
 };
 
 export { type SuperheroShortDto };

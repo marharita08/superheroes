@@ -1,6 +1,6 @@
 import type { Knex } from "knex";
 
-const TABLE_NAME = "superheros";
+const TABLE_NAME = "superheroes";
 
 const ColumnName = {
   ID: "id",

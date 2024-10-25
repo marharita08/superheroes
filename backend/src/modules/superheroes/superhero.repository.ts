@@ -38,7 +38,7 @@ class SuperheroRepository {
         savedImages.push(
           await this.imageModel
             .query()
-            .insert({ superheroId: superhero.id, link: image })
+            .insert({ superheroId: superhero.id, link: image.link })
         );
       }
     }
@@ -53,7 +53,7 @@ class SuperheroRepository {
       superpowers: superhero.superpowers,
       catchPhrase: superhero.catchPhrase,
       images:
-        savedImages.length > 0 ? savedImages.map(image => image.link) : null
+        savedImages.length > 0 ? savedImages : null
     });
   }
 
@@ -81,7 +81,7 @@ class SuperheroRepository {
           catchPhrase: superhero.catchPhrase,
           images:
             superhero.images && superhero.images.length > 0
-              ? superhero.images.map(image => image.link)
+              ? superhero.images
               : null
         })
       : null;
@@ -104,7 +104,7 @@ class SuperheroRepository {
         catchPhrase: superhero.catchPhrase,
         images:
           superhero.images && superhero.images.length > 0
-            ? superhero.images.map(image => image.link)
+            ? superhero.images
             : null
       })
     );
@@ -134,7 +134,7 @@ class SuperheroRepository {
     const oldImages = await this.imageModel.query().where({ superheroId: id });
 
     const oldImageLinks = oldImages.map(image => image.link);
-    const newImageLinks = images ? images : [];
+    const newImageLinks = images ? images.map(image => image.link) : [];
 
     const imagesToAdd = newImageLinks.filter(
       link => !oldImageLinks.includes(link)
@@ -176,8 +176,7 @@ class SuperheroRepository {
           originDescription: superhero.originDescription,
           superpowers: superhero.superpowers,
           catchPhrase: superhero.catchPhrase,
-          images:
-            savedImages.length > 0 ? savedImages.map(image => image.link) : null
+          images: savedImages.length > 0 ? savedImages : null
         })
       : null;
   }
