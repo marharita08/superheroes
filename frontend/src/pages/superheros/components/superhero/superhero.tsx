@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 import { SuperheroShortDto } from "../../../../types/superhero-short-dto.type";
 import styles from "./superhero.module.css";
 
@@ -13,7 +15,9 @@ const Superhero: React.FC<Properties> = ({ superhero }) => {
         alt={superhero.nickname}
         className={styles.image}
       />
-      <h3>{superhero.nickname}</h3>
+      <Link to={`/superheroes/${superhero.id}`}>
+        <h3>{superhero.nickname}</h3>
+      </Link>
     </div>
   );
 };

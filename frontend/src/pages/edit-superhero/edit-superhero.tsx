@@ -4,10 +4,10 @@ import { useNavigate, useParams } from "react-router-dom";
 
 import { SuperheroForm } from "../../components/superhero-form/superhero-form";
 import { actions as superheroesActions } from "../../store/superheroes/superheroes";
-import styles from "./edit-superhero.module.css";
 import { AppDispatch, RootState } from "../../store/store";
 import { DataStatus } from "../../enums/data-status.enum";
 import { SuperheroCreateUpdateDto } from "../../types/superhero-create-update-dto.type";
+import styles from "./edit-superhero.module.css";
 
 const EditSuperhero: React.FC = () => {
   const { id } = useParams();
@@ -17,7 +17,7 @@ const EditSuperhero: React.FC = () => {
   const { superhero, dataStatus, updateStatus } = useSelector((state: RootState) => ({
     superhero: state.superheroes.currentSuperhero,
     dataStatus: state.superheroes.dataStatus,
-    updateStatus: state.superheroes.updateStatus
+    updateStatus: state.superheroes.createUpdateStatus
   }));
 
   const handleFormSubmit = useCallback((data: SuperheroCreateUpdateDto): void => {

@@ -18,14 +18,14 @@ type State = {
   superheroes: SuperheroShortDto[];
   currentSuperhero: SuperheroDto | null;
   dataStatus: ValueOf<typeof DataStatus>;
-  updateStatus: ValueOf<typeof DataStatus>;
+  createUpdateStatus: ValueOf<typeof DataStatus>;
 };
 
 const initialState: State = {
   superheroes: [],
   currentSuperhero: null,
   dataStatus: DataStatus.IDLE,
-  updateStatus: DataStatus.IDLE,
+  createUpdateStatus: DataStatus.IDLE,
 };
 
 const { actions, name, reducer } = createSlice({
@@ -56,23 +56,26 @@ const { actions, name, reducer } = createSlice({
     });
 
     builder.addCase(addSuperhero.pending, state => {
+      state.createUpdateStatus = DataStatus.PENDING;
       state.dataStatus = DataStatus.PENDING;
     });
     builder.addCase(addSuperhero.fulfilled, (state, action) => {
       state.dataStatus = DataStatus.FULFILLED;
+      state.createUpdateStatus = DataStatus.FULFILLED;
       state.superheroes.push(parseSuperheroToShort(action.payload));
       state.currentSuperhero = action.payload;
     });
     builder.addCase(addSuperhero.rejected, state => {
       state.dataStatus = DataStatus.REJECTED;
+      state.createUpdateStatus = DataStatus.REJECTED;
     });
 
     builder.addCase(updateSuperhero.pending, state => {
-      state.updateStatus = DataStatus.PENDING;
+      state.createUpdateStatus = DataStatus.PENDING;
       state.dataStatus = DataStatus.PENDING;
     });
     builder.addCase(updateSuperhero.fulfilled, (state, action) => {
-      state.updateStatus = DataStatus.FULFILLED;
+      state.createUpdateStatus = DataStatus.FULFILLED;
       state.dataStatus = DataStatus.FULFILLED;
       state.superheroes = state.superheroes.map(hero => {
         return hero.id === action.payload.id
@@ -82,7 +85,7 @@ const { actions, name, reducer } = createSlice({
       state.currentSuperhero = action.payload;
     });
     builder.addCase(updateSuperhero.rejected, state => {
-      state.updateStatus = DataStatus.REJECTED;
+      state.createUpdateStatus = DataStatus.REJECTED;
       state.dataStatus = DataStatus.REJECTED;
     });
 

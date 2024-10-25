@@ -4,10 +4,10 @@ import { useNavigate } from "react-router-dom";
 
 import { SuperheroForm } from "../../components/superhero-form/superhero-form";
 import { actions as superheroesActions } from "../../store/superheroes/superheroes";
-import styles from "./create-superhero.module.css";
 import { AppDispatch, RootState } from "../../store/store";
 import { DataStatus } from "../../enums/data-status.enum";
 import { SuperheroCreateUpdateDto } from "../../types/superhero-create-update-dto.type";
+import styles from "./create-superhero.module.css";
 
 const CreateSuperhero: React.FC = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -21,9 +21,10 @@ const CreateSuperhero: React.FC = () => {
     images: []
   };
 
-  const { superhero, dataStatus } = useSelector((state: RootState) => ({
+  const { superhero, dataStatus, addStatus } = useSelector((state: RootState) => ({
     superhero: state.superheroes.currentSuperhero,
-    dataStatus: state.superheroes.dataStatus
+    dataStatus: state.superheroes.dataStatus,
+    addStatus: state.superheroes.createUpdateStatus
   }));
 
   const handleFormSubmit = useCallback((data: SuperheroCreateUpdateDto): void => {
@@ -31,10 +32,10 @@ const CreateSuperhero: React.FC = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    if (superhero && dataStatus === DataStatus.FULFILLED) {
+    if (superhero && addStatus === DataStatus.FULFILLED) {
       navigate(`/superheroes/${superhero.id}`);
     }
-  }, [superhero, dataStatus, navigate]);
+  }, [superhero, addStatus, navigate]);
 
   const isLoading = dataStatus === DataStatus.PENDING;
 
