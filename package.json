@@ -1,0 +1,9 @@
+{
+  "scripts": {
+    "_prettier": "prettier \"**/*.{js,ts,tsx,json,md,css,html}\"",
+    "format": "npm run _prettier -- --write"
+  },
+  "devDependencies": {
+    "prettier": "^3.3.3"
+  }
+}

@@ -1,0 +1,47 @@
+.container {
+  padding: 30px 50px;
+}
+
+.card {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 30px;
+}
+
+.images {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  overflow-x: auto;
+}
+
+.image {
+  width: 200px;
+}
+
+.info {
+  display: grid;
+  grid-template-columns: 1fr 5fr;
+  gap: 10px;
+}
+
+.info_title {
+  font-weight: bold;
+}
+
+.buttons {
+  display: flex;
+  gap: 10px;
+}
+
+@media (width <= 768px) {
+  .container {
+    padding: 20px;
+  }
+  .info {
+    font-size: 14px;
+  }
+}

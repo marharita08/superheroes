@@ -1,0 +1,27 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.image {
+  width: 100px;
+}
+
+.name {
+  width: 200px;
+}
+
+@media (width <= 480px) {
+  .container {
+    flex-direction: column;
+    width: 250px;
+  }
+  .name {
+    text-align: center;
+  }
+}

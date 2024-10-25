@@ -1,0 +1,16 @@
+.container {
+  padding: 30px;
+  display: flex;
+  justify-content: center;
+}
+
+.card {
+  padding: 30px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  width: 100%;
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
