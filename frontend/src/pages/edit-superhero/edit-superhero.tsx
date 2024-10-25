@@ -1,55 +1,60 @@
 import { useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 import { SuperheroForm } from "../../components/superhero-form/superhero-form";
 import { actions as superheroesActions } from "../../store/superheroes/superheroes";
-import styles from "./create-superhero.module.css";
+import styles from "./edit-superhero.module.css";
 import { AppDispatch, RootState } from "../../store/store";
 import { DataStatus } from "../../enums/data-status.enum";
 import { SuperheroCreateUpdateDto } from "../../types/superhero-create-update-dto.type";
 
-const CreateSuperhero: React.FC = () => {
+const EditSuperhero: React.FC = () => {
+  const { id } = useParams();
   const dispatch: AppDispatch = useDispatch();
   const navigate = useNavigate();
-  const defaultValues: SuperheroCreateUpdateDto = {
-    nickname: "",
-    realName: "",
-    originDescription: "",
-    superpowers: "",
-    catchPhrase: "",
-    images: []
-  };
 
-  const { superhero, dataStatus } = useSelector((state: RootState) => ({
+  const { superhero, dataStatus, updateStatus } = useSelector((state: RootState) => ({
     superhero: state.superheroes.currentSuperhero,
-    dataStatus: state.superheroes.dataStatus
+    dataStatus: state.superheroes.dataStatus,
+    updateStatus: state.superheroes.updateStatus
   }));
 
   const handleFormSubmit = useCallback((data: SuperheroCreateUpdateDto): void => {
-    dispatch(superheroesActions.addSuperhero(data));
-  }, [dispatch]);
+    if (id) {
+      dispatch(superheroesActions.updateSuperhero({ id: +id, data }));
+    }
+  }, [dispatch, id]);
 
   useEffect(() => {
-    if (superhero && dataStatus === DataStatus.FULFILLED) {
+    if (id) {
+      dispatch(superheroesActions.getSuperheroById(+id));
+    }
+  }, [dispatch, id]);
+
+  useEffect(() => {
+    if (superhero && updateStatus === DataStatus.FULFILLED) {
       navigate(`/superheroes/${superhero.id}`);
     }
-  }, [superhero, dataStatus, navigate]);
+  }, [superhero, updateStatus, navigate]);
 
   const isLoading = dataStatus === DataStatus.PENDING;
 
   return (
     <div className={styles.container}>
       <div className={styles.card}>
-        <h1>Create Superhero</h1>
+        <h1>Edit Superhero</h1>
         {isLoading && "Loading..."}
-        <SuperheroForm
-          defaultValues={defaultValues}
-          onSubmit={handleFormSubmit}
-        />
+        {
+          superhero &&
+          <SuperheroForm
+            defaultValues={superhero}
+            onSubmit={handleFormSubmit}
+          />
+        }
       </div>
     </div>
   );
 };
 
-export { CreateSuperhero };
+export { EditSuperhero };

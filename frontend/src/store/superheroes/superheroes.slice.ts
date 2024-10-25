@@ -18,12 +18,14 @@ type State = {
   superheroes: SuperheroShortDto[];
   currentSuperhero: SuperheroDto | null;
   dataStatus: ValueOf<typeof DataStatus>;
+  updateStatus: ValueOf<typeof DataStatus>;
 };
 
 const initialState: State = {
   superheroes: [],
   currentSuperhero: null,
-  dataStatus: DataStatus.IDLE
+  dataStatus: DataStatus.IDLE,
+  updateStatus: DataStatus.IDLE,
 };
 
 const { actions, name, reducer } = createSlice({
@@ -66,9 +68,11 @@ const { actions, name, reducer } = createSlice({
     });
 
     builder.addCase(updateSuperhero.pending, state => {
+      state.updateStatus = DataStatus.PENDING;
       state.dataStatus = DataStatus.PENDING;
     });
     builder.addCase(updateSuperhero.fulfilled, (state, action) => {
+      state.updateStatus = DataStatus.FULFILLED;
       state.dataStatus = DataStatus.FULFILLED;
       state.superheroes = state.superheroes.map(hero => {
         return hero.id === action.payload.id
@@ -78,6 +82,7 @@ const { actions, name, reducer } = createSlice({
       state.currentSuperhero = action.payload;
     });
     builder.addCase(updateSuperhero.rejected, state => {
+      state.updateStatus = DataStatus.REJECTED;
       state.dataStatus = DataStatus.REJECTED;
     });
 
