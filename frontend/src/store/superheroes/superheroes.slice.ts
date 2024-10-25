@@ -12,7 +12,7 @@ import {
   getSuperheroes,
   getSuperheroById,
   updateSuperhero,
-  getSuperheroesCount,
+  getSuperheroesCount
 } from "./actions";
 
 type State = {

@@ -21,7 +21,8 @@ class SuperheroService {
   }
 
   async count(): Promise<number> {
-    return (await this.httpService.get<{count: number}>("/superheroes/count")).count;
+    return (await this.httpService.get<{ count: number }>("/superheroes/count"))
+      .count;
   }
 
   async create(superheroData: SuperheroCreateUpdateDto): Promise<SuperheroDto> {

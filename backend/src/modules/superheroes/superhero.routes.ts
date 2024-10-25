@@ -15,10 +15,13 @@ const superheroService = new SuperheroService(superheroRepository);
 
 const router = Router();
 
-router.get("/count", asyncHandler(async (req: Request, res: Response) => {
-  const count = await superheroService.count();
-  res.json({count});
-}))
+router.get(
+  "/count",
+  asyncHandler(async (req: Request, res: Response) => {
+    const count = await superheroService.count();
+    res.json({ count });
+  })
+);
 
 router.get(
   "/:id",
@@ -40,7 +43,6 @@ router.get(
     res.json(superheros);
   })
 );
-
 
 router.post(
   "/",

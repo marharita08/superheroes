@@ -9,16 +9,18 @@ import { DataStatus } from "../../enums/data-status.enum";
 import { Button } from "../../components/button/button";
 import styles from "./superheroes.module.css";
 
-const PAGE_SIZE = 3;
+const PAGE_SIZE = 5;
 
 const Superheroes: React.FC = () => {
   const dispatch: AppDispatch = useDispatch();
   const navigate = useNavigate();
-  const { superheroes, dataStatus, totalCount } = useSelector((state: RootState) => ({
-    superheroes: state.superheroes.superheroes,
-    dataStatus: state.superheroes.dataStatus,
-    totalCount: state.superheroes.totalCount
-  }));
+  const { superheroes, dataStatus, totalCount } = useSelector(
+    (state: RootState) => ({
+      superheroes: state.superheroes.superheroes,
+      dataStatus: state.superheroes.dataStatus,
+      totalCount: state.superheroes.totalCount
+    })
+  );
   const [page, setPage] = useState<number>(1);
 
   useEffect(() => {
@@ -60,7 +62,11 @@ const Superheroes: React.FC = () => {
               />
             </div>
             <div className={styles.button}>
-              <Button label="Next" onClick={handleNext} isDisabled={page >= maxPage} />
+              <Button
+                label="Next"
+                onClick={handleNext}
+                isDisabled={page >= maxPage}
+              />
             </div>
           </div>
           {superheroes.map(superhero => (
